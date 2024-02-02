@@ -20,3 +20,6 @@ cv.json
 
 # macOS-specific files
 .DS_Store
+
+#Visual Studio Code Config
+.vscode
