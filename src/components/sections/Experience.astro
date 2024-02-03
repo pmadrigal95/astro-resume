@@ -1,7 +1,7 @@
 ---
-import Section from "../Section.astro"
+import Section from "../Section.astro";
 
-import { work } from "@cv"
+import { work } from "@cv";
 ---
 
 <Section title="Work Experience">
@@ -9,10 +9,10 @@ import { work } from "@cv"
     {
       work.map(
         ({ name, startDate, endDate, position, summary, highlights, url }) => {
-          const startYear = new Date(startDate).getFullYear()
+          const startYear = new Date(startDate).getFullYear();
           const endYear =
-            endDate != null ? new Date(endDate).getFullYear() : "Present"
-          const years = `${startYear} - ${endYear}`
+            endDate != null ? new Date(endDate).getFullYear() : "Present";
+          const years = `${startYear} - ${endYear}`;
 
           return (
             <li>
@@ -31,11 +31,23 @@ import { work } from "@cv"
                 </header>
 
                 <footer>
-                  <p>{summary}</p>
+                  <section>
+                    <div>
+                      {highlights.map((name) => (
+                        <ul class="list">
+                          <p class="custom-space">• {name}</p>
+                        </ul>
+                      ))}
+                    </div>
+
+                    <div>
+                      <p class="custom-space">{summary}</p>
+                    </div>
+                  </section>
                 </footer>
               </article>
             </li>
-          )
+          );
         }
       )
     }
@@ -43,10 +55,21 @@ import { work } from "@cv"
 </Section>
 
 <style>
+  custom-space {
+    padding-block: 32px !important;
+  }
+
   ul {
     display: flex;
     flex-direction: column;
     gap: 32px;
+    list-style: none;
+  }
+
+  .list li::before {
+    content: attr(data-icon);
+    padding-right: 10px;
+    font-size: inherit;
   }
 
   article h3 {
